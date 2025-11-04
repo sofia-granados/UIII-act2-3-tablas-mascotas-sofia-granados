@@ -1,10 +1,11 @@
-lenguaje: Python.
-Framework: Django.
-Editor: VS code.
-1 Procedimiento para crear carpeta del Proyecto: UIII_mascotas_0237
-2 procedimiento para abrir vs code sobre la carpeta
-UIII_mascotas_0237
-3 procedimiento para abrir terminal en vs code
+# lenguaje: Python.
+
+# Framework: Django.
+
+# Editor: VS code.
+## 1 Procedimiento para crear carpeta del Proyecto: UIII_mascotas_0237
+## 2 procedimiento para abrir vs code sobre la carpeta UIII_mascotas_0237
+## 3 procedimiento para abrir terminal en vs code
 4 Procedimiento para crear carpeta entorno virtual “.venv” desde
 terminal de vs code
 5 Procedimiento para activar el entorno virtual.
