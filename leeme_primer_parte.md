@@ -53,6 +53,33 @@
     # Crear carpetas templates
     mkdir app_mascotas\templates
     mkdir app_mascotas\templates\mascotas
+    
+# ✅ backend_mascotas/settings.py (AGREGAR)
+    INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'app_mascotas',  # ← Agregar esta línea
+    ] 
+# ✅ backend_mascotas/urls.py 
+        from django.contrib import admin
+    from django.urls import path, include
+
+    urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('app_mascotas.urls')),  # ← Agregar esta línea
+    ]
+
+# ✅ app_mascotas/admin.py
+    from django.contrib import admin
+    from .models import Animal, Cliente, Empleado
+
+    admin.site.register(Animal)
+        admin.site.register(Cliente)
+    admin.site.register(Empleado)
 
 # ✅ app_mascotas/models.py
     from django.db import models
@@ -128,6 +155,19 @@
     
     def __str__(self):
         return f"Empleado: {self.nombre} {self.apepaterno} ({self.ocupacion})"
+# 🔗 Paso 23-26: URLs y Configuración
+    from django.urls import path
+    from . import views
+
+    urlpatterns = [
+        path('', views.inicio_mascotas, name='inicio_mascotas'),
+    path('agregar/', views.agregar_mascota, name='agregar_mascota'),
+    path('ver/', views.ver_mascotas, name='ver_mascotas'),
+    path('actualizar/<int:id_animales>/', views.actualizar_mascota, name='actualizar_mascota'),
+    path('realizar-actualizacion/<int:id_animales>/', views.realizar_actualizacion_mascota, name='realizar_actualizacion_mascota'),
+    path('borrar/<int:id_animales>/', views.borrar_mascota, name='borrar_mascota'),
+    ]
+
 
 # ✅ Migraciones (Paso 12.5)
     python manage.py makemigrations
@@ -504,3 +544,131 @@
     </div>
     </div>
     {% endblock %}
+
+# ✅ app_mascotas/templates/mascotas/actualizar_mascotas.html
+    {% extends 'base.html' %}
+
+    {% block content %}
+    <div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow-sm">
+            <div class="card-header bg-warning text-dark">
+                <h4 class="mb-0">✏️ Actualizar Mascota: {{ mascota.nombre }}</h4>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="{% url 'realizar_actualizacion_mascota' mascota.id_animales %}">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Nombre</label>
+                            <input type="text" class="form-control" name="nombre" value="{{ mascota.nombre }}" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Edad</label>
+                            <input type="text" class="form-control" name="edad" value="{{ mascota.edad }}">
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Peso (kg)</label>
+                            <input type="number" step="0.01" class="form-control" name="peso" value="{{ mascota.peso }}" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Especie</label>
+                            <input type="text" class="form-control" name="especie" value="{{ mascota.especie }}" required>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Cuidados Especiales</label>
+                        <textarea class="form-control" name="cuidados" rows="2">{{ mascota.cuidados }}</textarea>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Enfermedades</label>
+                        <textarea class="form-control" name="enfermedades" rows="2">{{ mascota.enfermedades }}</textarea>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Alimentación</label>
+                        <textarea class="form-control" name="alimentacion" rows="2">{{ mascota.alimentacion }}</textarea>
+                    </div>
+                    
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button type="submit" class="btn btn-warning me-md-2">Actualizar Mascota</button>
+                        <a href="{% url 'ver_mascotas' %}" class="btn btn-secondary">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+    {% endblock %}
+
+# ✅ app_mascotas/templates/mascotas/borrar_mascotas.html
+    {% extends 'base.html' %}
+
+    {% block content %}
+    <div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow-sm">
+            <div class="card-header bg-danger text-white">
+                <h4 class="mb-0">🗑️ Confirmar Eliminación</h4>
+            </div>
+            <div class="card-body text-center">
+                <div class="alert alert-warning">
+                    <h5>¿Estás seguro de que quieres eliminar esta mascota?</h5>
+                    <p class="mb-1"><strong>Nombre:</strong> {{ mascota.nombre }}</p>
+                    <p class="mb-1"><strong>Especie:</strong> {{ mascota.especie }}</p>
+                    <p class="mb-3"><strong>ID:</strong> {{ mascota.id_animales }}</p>
+                    <p class="text-danger"><strong>⚠️ Esta acción no se puede deshacer</strong></p>
+                </div>
+                
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                        <button type="submit" class="btn btn-danger me-md-2">Sí, Eliminar</button>
+                        <a href="{% url 'ver_mascotas' %}" class="btn btn-secondary">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+    {% endblock %}
+ # 🚀 Paso 27-31: Finalizar
+# ✅ Comandos Finales   
+
+    # Realizar migraciones nuevamente
+    python manage.py makemigrations
+    python manage.py migrate
+
+    # Crear superusuario (opcional)
+    python manage.py createsuperuser
+
+    # Ejecutar servidor en puerto 8037
+    python manage.py runserver 8037
+
+# ✅ Proyecto Completamente Funcional
+    Tu proyecto ahora tiene:
+
+    ✅ 3 modelos (Animal, Cliente, Empleado) con relaciones
+
+    ✅ CRUD completo para mascotas
+
+    ✅ Diseño moderno con Bootstrap
+
+    ✅ Estructura profesional de carpetas
+
+    ✅ Navegación completa con menús desplegables
+
+    ✅ Responsive design
+
+    ✅ Sin forms.py (como solicitaste)
+
+    ✅ Colores suaves y atractivos
+
+    ✅ Ejecución en puerto 8037
+
+    Acceso: http://127.0.0.1:8037/
