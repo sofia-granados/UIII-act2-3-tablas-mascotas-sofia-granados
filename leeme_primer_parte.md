@@ -273,7 +273,7 @@
     </body>
     </html>
 
-#✅ app_mascotas/templates/base.html
+# ✅ app_mascotas/templates/base.html
 
     <!DOCTYPE html>
     <html lang="es">
