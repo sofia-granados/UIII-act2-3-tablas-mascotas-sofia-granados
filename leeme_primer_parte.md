@@ -79,47 +79,48 @@ Relación Muchos a Muchos: Un Empleado atiende muchos Animales,  y un Animal pue
       def __str__(self): return f"Empleado: {self.nombre} {self.apepaterno} ({self.ocupacion})"
 
 
-     # 8.  Procedimiento para realizar las migraciones(makemigrations y migrate.
- 
-     # 9.  primero trabajamos con el MODELO: animales
-           En view de app_mascotas crear las funciones con sus códigos correspondientes (inicio_mascotas, agregar_mascota,
-           actualizar_mascota, realizar_actualizacion_mascota, borrar_mascota)
 
-     # 10.  Crear la carpeta “templates” dentro de “app_mascotas”.
+# 8.  Procedimiento para realizar las migraciones(makemigrations y migrate.
+ 
+# 9.  primero trabajamos con el MODELO: animales
+    En view de app_mascotas crear las funciones con sus códigos correspondientes (inicio_mascotas, agregar_mascota,
+    actualizar_mascota, realizar_actualizacion_mascota, borrar_mascota)
+
+# 10.  Crear la carpeta “templates” dentro de “app_mascotas”.
             En la carpeta templates crear los archivos html (base.html,
             header.html, navbar.html, footer.html, inicio.html).
  
-     # 11. En el archivo base.html agregar bootstrap para css y js.
+# 11. En el archivo base.html agregar bootstrap para css y js.
  
-     # 12. En el archivo navbar.html incluir las opciones ( “Sistema de Administración mascotas”, “Inicio”, “mascotas”,en submenu de
+ # 12. En el archivo navbar.html incluir las opciones ( “Sistema de Administración mascotas”, “Inicio”, “mascotas”,en submenu de
            mascotas(Aregar mascotas,ver mascotas, actualizar mascotas, borrar mascota), “clientes” en submenú de clientes(Agregar clientes,ver
            clientes, actualizar clientes, borrar clientes) “empleados” en sub menu de empleados(Agregar empleados,ver empleados,
            actualizar empleados, borrar empleados), incluir iconos a las opciones principales, no en los submenús.
  
-     # 14. En el archivo footer.html incluir derechos de autor,fecha del sistema y “Creado por Sofia Granados Sanchez, Cbtis 128” y mantenerla fija al final de la página.
+ # 14. En el archivo footer.html incluir derechos de autor,fecha del sistema y “Creado por Sofia Granados Sanchez, Cbtis 128” y mantenerla fija al final de la página.
            En el archivo inicio.html se usa para colocar información del sistema más una imagen tomada desde la red sobre cinepolis.
  
-     # 15. Crear la subcarpeta carpeta mascotas dentro de app_mascotas\templates.
+ # 15. Crear la subcarpeta carpeta mascotas dentro de app_mascotas\templates.
            crear los archivos html con su codigo correspondientes de (agregar_mascotas.html, ver_mascotas.html mostrar en tabla con
            los botones ver, editar y borrar, actualizar_mascotas.html, borrar_mascotas.html) dentro de app_mascotas\templates\mascotas.
  
-     # 16.  No utilizar forms.py.
+# 16.  No utilizar forms.py.
  
-     # 17.  procedimiento para crear el archivo urls.py en app_mascotas con el código correspondiente para acceder a las funciones de views.py
+ # 17.  procedimiento para crear el archivo urls.py en app_mascotas con el código correspondiente para acceder a las funciones de views.py
             para operaciones de crud en mascotas.
             procedimiento para agregar app_mascotas en settings.py de backend_mascotas
            realizar las configuraciones correspondiente a urls.py de backend_mascotas para enlazar con app_mascotas
  
-     # 18. procedimiento para registrar los modelos en admin.py y volver a realizar las migraciones.
+# 18. procedimiento para registrar los modelos en admin.py y volver a realizar las migraciones.
  
-     # 19. por lo pronto solo trabajar con “mascotas” dejar pendiente # MODELO: clientes y # MODELO: empleados
+# 19. por lo pronto solo trabajar con “mascotas” dejar pendiente # MODELO: clientes y # MODELO: empleados
  
-     # 20. Utilizar colores suaves, atractivos y modernos, el código de las páginas web sencillas.
+# 20. Utilizar colores suaves, atractivos y modernos, el código de las páginas web sencillas.
  
-     # 21. No validar entrada de datos.
+ # 21. No validar entrada de datos.
      
-     # 22. Al inicio crear la estructura completa de carpetas y archivos.
+# 22. Al inicio crear la estructura completa de carpetas y archivos.
 
-     # 23. proyecto totalmente funcional.
+# 23. proyecto totalmente funcional.
  
-     # 24. finalmente ejecutar servidor en el puerto puerto 8037.
+# 24. finalmente ejecutar servidor en el puerto puerto 8037.
