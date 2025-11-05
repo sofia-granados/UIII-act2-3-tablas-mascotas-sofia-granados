@@ -155,7 +155,7 @@
     
     def __str__(self):
         return f"Empleado: {self.nombre} {self.apepaterno} ({self.ocupacion})"
-# 🔗 Paso 23-26: URLs y Configuración
+# 🔗 Paso URLs y Configuración
     from django.urls import path
     from . import views
 
